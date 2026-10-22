@@ -1,0 +1,44 @@
+{
+  "ab_hard": "PASS",
+  "ab_hard_protocol": "loi_v0+lop_v0",
+  "backend": "residual_gbdt",
+  "compare": "<=",
+  "delta_loi": -0.20942300000000003,
+  "delta_lop": -1.2710000000000087e-07,
+  "detail": {
+    "compare": "<=",
+    "loi": {
+      "delta": -0.20942300000000003,
+      "p95_idw_nn": 0.31168,
+      "p95_selected": 0.102257,
+      "pass": true,
+      "protocol": "loi_v0"
+    },
+    "lop": {
+      "delta": -1.2710000000000087e-07,
+      "p95_idw_nn": 5.2333e-05,
+      "p95_selected": 5.22059e-05,
+      "pass": true,
+      "protocol": "lop_v0"
+    },
+    "note": "AB-hard uses \u2264 (unify with H3-hard); replaces algo-upgrade strict < for P-LOI-base/P-LOP.",
+    "protocol": "loi_v0+lop_v0"
+  },
+  "gates": {
+    "AB-hard-LOI": true,
+    "AB-hard-LOP": true,
+    "P-LOI-base": true,
+    "P-LOI-reg": true,
+    "P-LOP": true
+  },
+  "generated": "2026-10-22T14:32:34+08:00",
+  "model_sha16": "5f23a848efe201b7",
+  "p95_idw_loi": 0.31168,
+  "p95_idw_lop": 5.2333e-05,
+  "p95_selected_loi": 0.102257,
+  "p95_selected_lop": 5.22059e-05,
+  "seed": 42,
+  "source_path": null,
+  "stamp_generated": "2026-10-22T14:32:34+08:00",
+  "stamp_sha16": "5f23a848efe201b7"
+}

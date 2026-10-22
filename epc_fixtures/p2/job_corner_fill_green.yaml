@@ -1,0 +1,35 @@
+version: "0.1"
+mode: corner_fill_geom
+job_name: DEMO_P2_geom_green
+
+source:
+  process: DEMO_A
+  db_path: "/workspace/epc_fixtures/A_ref.db"
+
+geom_fill:
+  seed_instances:
+    - HINP3TCAM64X8SWISDC
+    - HINP3TCAM64X100SWISDC
+    - HINP3TCAM512X8SWISDC
+    - HINP3TCAM512X100SWISDC
+  target_instances:
+    - HINP3TCAM256X32SWISDC
+  pvt_list: "/workspace/epc_fixtures/p2/pvt8.txt"
+  require_corner_coverage: true
+
+field_policy:
+  keys: all_from_source
+  table_axes: ["tran_index", "load_index"]
+
+construct:
+  backend: idw_nn
+  # residual_gbdt also runnable; H3 DEMO certifies idw_nn under 4-corner prior
+  # (residual may be worse than idw when prior is corner-only — known limitation)
+
+output:
+  db_path: "/workspace/epc_fixtures/p2/out_geom.db"
+  audit_report_path: "/workspace/epc_fixtures/p2/out_geom_audit.md"
+
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job

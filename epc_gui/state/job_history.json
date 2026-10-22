@@ -1,0 +1,29 @@
+[
+  {
+    "event": "save",
+    "yaml": "/workspace/epc_fixtures/epc_job.sample.yaml",
+    "mode": "epc_ab",
+    "EXIT": null,
+    "audit": "/workspace/epc_fixtures/B_out.sample_audit.md",
+    "db": "/workspace/epc_fixtures/B_out.sample.db",
+    "ts": "2026-10-22 09:25:31 Asia/Shanghai"
+  },
+  {
+    "event": "run",
+    "yaml": "/workspace/epc_fixtures/epc_job.sample.yaml",
+    "mode": "epc_ab",
+    "EXIT": 0,
+    "audit": "/workspace/epc_fixtures/B_out.sample_audit.md",
+    "db": "/workspace/epc_fixtures/B_out.sample.db",
+    "ts": "2026-10-22 09:25:31 Asia/Shanghai"
+  },
+  {
+    "event": "run",
+    "yaml": "/workspace/epc_fixtures/p1/epc_job.p1_improve_green.yaml",
+    "mode": "epc_ab",
+    "EXIT": 0,
+    "audit": "/workspace/epc_fixtures/p1/B_out.p1_green_audit.md",
+    "db": "/workspace/epc_fixtures/p1/B_out.p1_green.db",
+    "ts": "2026-10-22 09:25:31 Asia/Shanghai"
+  }
+]

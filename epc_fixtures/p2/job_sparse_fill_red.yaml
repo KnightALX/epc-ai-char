@@ -1,0 +1,31 @@
+version: "0.1"
+mode: pvt_sparse_fill
+job_name: DEMO_P2_sparse_red_weak_seed
+
+source:
+  process: DEMO_A
+  db_path: "/workspace/epc_fixtures/p2/A_sparse_weak.db"
+
+sparse_fill:
+  instances: all_in_source
+  seed_pvts: auto
+  target_pvt_list:
+    - TT_0P80V_0P80V_25C
+    - SSGNP_0P99V_0P99V_125C
+    - FFGNP_0P675V_0P675V_M40C
+  allow_weak_seed: false
+  min_seed_pvts: 3
+
+field_policy:
+  keys: all_from_source
+
+construct:
+  backend: idw_nn
+
+output:
+  db_path: "/workspace/epc_fixtures/p2/out_sparse_red.db"
+  audit_report_path: "/workspace/epc_fixtures/p2/out_sparse_red_audit.md"
+
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job

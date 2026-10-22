@@ -1,0 +1,33 @@
+version: "0.1"
+mode: pvt_sparse_fill
+job_name: DEMO_P2_sparse_green
+
+source:
+  process: DEMO_A
+  db_path: "/workspace/epc_fixtures/p2/A_sparse.db"
+
+sparse_fill:
+  instances: all_in_source
+  seed_pvts: auto
+  target_pvt_list_path: "/workspace/epc_fixtures/p2/sparse_target_pvts.txt"
+  allow_weak_seed: false
+  min_seed_pvts: 3
+
+field_policy:
+  keys: all_from_source
+
+construct:
+  backend: residual_gbdt
+  residual_gbdt:
+    model_path: "/workspace/epc_engine/models/residual_gbdt.joblib"
+    prior: idw_nn
+    fallback: idw_nn
+    apply_on: all_extrapolated
+
+output:
+  db_path: "/workspace/epc_fixtures/p2/out_sparse.db"
+  audit_report_path: "/workspace/epc_fixtures/p2/out_sparse_audit.md"
+
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+.DS_Store
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+epc_gui/exports/*
+!epc_gui/exports/.gitkeep
+*.log

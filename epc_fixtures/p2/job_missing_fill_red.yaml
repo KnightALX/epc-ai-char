@@ -1,0 +1,31 @@
+version: "0.1"
+mode: pvt_missing_fill
+job_name: DEMO_P2_missing_red_absent_group
+
+source:
+  process: DEMO_A
+  db_path: "/workspace/epc_fixtures/p2/A_missing_punched.db"
+
+missing_fill:
+  instances:
+    - HINP3TCAM256X32SWISDC
+  pvts:
+    - TT_0P80V_0P80V_25C
+    - NOCORNER_0P80V_0P80V_25C   # whole group absent
+  create_missing_groups: false
+  require_groups:
+    - [HINP3TCAM256X32SWISDC, NOCORNER_0P80V_0P80V_25C]
+
+field_policy:
+  keys: all_from_source
+
+construct:
+  backend: idw_nn
+
+output:
+  db_path: "/workspace/epc_fixtures/p2/out_missing_red.db"
+  audit_report_path: "/workspace/epc_fixtures/p2/out_missing_red_audit.md"
+
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job
