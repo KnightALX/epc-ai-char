@@ -3,8 +3,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from PyQt6.QtGui import QColor, QFont, QPalette
-from PyQt6.QtWidgets import QApplication
+from PyQt5.QtGui import QColor, QFont, QPalette
+from PyQt5.QtWidgets import QApplication
 
 UI_FONT_FAMILY = "Noto Sans, Source Sans 3, Segoe UI, PingFang SC, Noto Sans CJK SC, sans-serif"
 DATA_FONT_FAMILY = "IBM Plex Mono, Cascadia Mono, DejaVu Sans Mono, Noto Sans Mono, monospace"

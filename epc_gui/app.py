@@ -9,8 +9,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
     QApplication,
     QComboBox,
     QFrame,
@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
         for key in ("config", "preview", "compare"):
             b = QPushButton("")
             b.setObjectName("navBtn")
-            b.setCursor(Qt.CursorShape.PointingHandCursor)
+            b.setCursor(Qt.PointingHandCursor)
             b.clicked.connect(lambda _=False, k=key: self.switch_to(k))
             self._nav_btns[key] = b
             rv.addWidget(b)
@@ -335,7 +335,7 @@ def run(argv: list[str] | None = None) -> int:
     apply_theme(app, settings.get("theme", "dark"))
     main = MainWindow()
     main.show()
-    return app.exec()
+    return app.exec_()
 
 
 if __name__ == "__main__":

@@ -9,8 +9,8 @@ from pathlib import Path
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 sys.path.insert(0, "/workspace")
 
-from PyQt6.QtCore import QTimer
-from PyQt6.QtWidgets import QApplication
+from PyQt5.QtCore import QTimer
+from PyQt5.QtWidgets import QApplication
 
 from epc_gui.app import MainWindow
 from epc_gui.services import history as hist_svc
@@ -101,7 +101,7 @@ def main() -> int:
         app.quit()
 
     QTimer.singleShot(300, step_zh_config)
-    return app.exec()
+    return app.exec_()
 
 
 if __name__ == "__main__":

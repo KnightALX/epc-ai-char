@@ -6,7 +6,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from PyQt6.QtCore import QObject, QProcess, pyqtSignal
+from PyQt5.QtCore import QObject, QProcess, pyqtSignal
 
 
 @dataclass

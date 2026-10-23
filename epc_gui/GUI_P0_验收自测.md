@@ -20,7 +20,7 @@ source /workspace/epc_gui/.venv/bin/activate
 export PYTHONPATH=/workspace
 
 # 1) 依赖
-python -c "from PyQt6.QtWidgets import QApplication; import pyqtgraph,yaml; print('OK')"
+python -c "from PyQt5.QtWidgets import QApplication; import pyqtgraph,yaml; print('OK')"
 
 # 2) brief start/quit
 QT_QPA_PLATFORM=offscreen python /workspace/epc_gui/scripts/brief_start_quit.py

@@ -7,9 +7,9 @@ import sys
 from pathlib import Path
 
 import pyqtgraph as pg
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QCursor, QDesktopServices
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtGui import QCursor, QDesktopServices
+from PyQt5.QtWidgets import (
     QComboBox,
     QFileDialog,
     QFrame,
@@ -118,7 +118,7 @@ class ComparePage(QWidget):
         c1row.addStretch(1)
         self.lbl_sat = QLabel("")
         self.lbl_sat.setObjectName("Readout")
-        self.lbl_sat.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.lbl_sat.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         c1row.addWidget(self.lbl_sat)
         c1.addLayout(c1row)
         self.plot_c1 = pg.PlotWidget()
@@ -365,7 +365,7 @@ class ComparePage(QWidget):
             self.browse_audit()
             return
         try:
-            QDesktopServices.openUrl(Path(self._audit_path).as_uri())
+            QDesktopServices.openUrl(QUrl(Path(self._audit_path).as_uri()))
         except Exception:
             pass
 
@@ -682,7 +682,7 @@ class ComparePage(QWidget):
             self.plot_c2.plot(
                 xs_a,
                 ys_a,
-                pen=pg.mkPen(color=t.MuteFog, width=1.5, style=Qt.PenStyle.DashLine),
+                pen=pg.mkPen(color=t.MuteFog, width=1.5, style=Qt.DashLine),
                 symbol="o",
                 symbolSize=5,
                 symbolBrush=t.MuteFog,
@@ -735,7 +735,7 @@ class ComparePage(QWidget):
             self.eval_log.setPlainText(f"missing {path}")
             return
         try:
-            QDesktopServices.openUrl(path.as_uri())
+            QDesktopServices.openUrl(QUrl(path.as_uri()))
         except Exception:
             self.eval_log.setPlainText(path.read_text(encoding="utf-8", errors="replace")[:4000])
 

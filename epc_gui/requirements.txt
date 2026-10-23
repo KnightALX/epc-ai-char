@@ -1,4 +1,4 @@
-PyQt6>=6.6
+PyQt5>=5.15
 PyQt-Fluent-Widgets>=1.5
 pyqtgraph>=0.13
 PyYAML>=6.0

@@ -3,8 +3,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtWidgets import (
     QComboBox,
     QFileDialog,
     QFormLayout,
@@ -491,11 +491,11 @@ class ConfigPage(QWidget):
             ex = e.get("EXIT", "—")
             y = Path(str(e.get("yaml", ""))).name
             item = QListWidgetItem(f"{ts}  {y}  {mode}  EXIT={ex}")
-            item.setData(Qt.ItemDataRole.UserRole, e)
+            item.setData(Qt.UserRole, e)
             self.history_list.addItem(item)
 
     def _on_history_click(self, item: QListWidgetItem) -> None:
-        e = item.data(Qt.ItemDataRole.UserRole) or {}
+        e = item.data(Qt.UserRole) or {}
         y = e.get("yaml")
         if y and Path(y).is_file():
             self.load_yaml_path(y)

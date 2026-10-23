@@ -84,7 +84,7 @@ def main() -> int:
 
     # Qt page: chart1 hidden when no constraints; layout widgets exist
     os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-    from PyQt6.QtWidgets import QApplication
+    from PyQt5.QtWidgets import QApplication
     from epc_gui.theme import apply_theme
     from epc_gui.pages.compare_page import ComparePage
 

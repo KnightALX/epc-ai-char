@@ -12,11 +12,16 @@ Fluent 本地壳：配置 job → 内嵌跑 `epc_engine` → 预览 `char_data` 
 
 ## 安装
 
+依赖栈：**PyQt5≥5.15** + `PyQt-Fluent-Widgets`（PyQt5 版，`import qfluentwidgets`）+ pyqtgraph（建议 `PYQTGRAPH_QT_LIB=PyQt5`）。
+
+
 ```bash
 python3 -m venv /workspace/epc_gui/.venv
 source /workspace/epc_gui/.venv/bin/activate
 pip install -r /workspace/epc_gui/requirements.txt
 # residual 路径需要 joblib + scikit-learn（已写入 requirements）
+# Qt 栈：PyQt5（非 PyQt6）。若环境同时装了 PyQt6，启动前设：
+#   export PYQTGRAPH_QT_LIB=PyQt5
 ```
 
 ## 启动
