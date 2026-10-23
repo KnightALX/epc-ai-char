@@ -102,8 +102,10 @@ def main() -> int:
     if "#F4F1EA" in design.split("Forbidden")[0] if False else False:
         pass
     # ensure light tokens section exists and forbidden noted
-    if "EEF1F5" not in design or "B87A12" not in design:
+    if "EEF1F5" not in design or "2E6BB0" not in design:
         errors.append("DESIGN.md missing light tokens")
+    if "AccentBlue" not in design:
+        errors.append("DESIGN.md missing AccentBlue")
     if "F4F1EA" in design and "Forbidden" not in design and "禁止" not in design:
         # may appear as forbidden example — OK if labeled
         pass

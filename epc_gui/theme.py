@@ -1,4 +1,4 @@
-"""Visual tokens from DESIGN.md — dark/light QSS + plot chrome."""
+"""Visual tokens from DESIGN.md — Virtuoso-like cool gray + blue QSS + plot chrome."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -18,33 +18,36 @@ class ThemeTokens:
     RuleLine: str
     Chalk: str
     MuteFog: str
-    TraceAmber: str
-    PvtCyan: str
+    AccentBlue: str
+    TraceAmber: str  # alias of AccentBlue (legacy name; value is blue)
+    PvtCyan: str  # secondary series / deeper cool gray-blue (not high-sat cyan)
     PassTeal: str
     FailRose: str
     PlotCanvas: str
     PVT_LINE_COLORS: tuple[str, ...]
 
 
+# Virtuoso CIW-like dark — cool gray base, single blue accent
 DARK = ThemeTokens(
     name="dark",
-    InkWell="#0E1419",
-    PanelSteel="#1C252E",
-    RuleLine="#2A3540",
-    Chalk="#D8DEE6",
-    MuteFog="#8B96A3",
-    TraceAmber="#E8A838",
-    PvtCyan="#3DB8C5",
-    PassTeal="#4A9B7A",
-    FailRose="#C45B6A",
-    PlotCanvas="#0E1419",
+    InkWell="#1E1E1E",
+    PanelSteel="#2D2D30",
+    RuleLine="#3E3E42",
+    Chalk="#D4D4D4",
+    MuteFog="#9A9A9A",
+    AccentBlue="#4A90D9",
+    TraceAmber="#4A90D9",
+    PvtCyan="#6B7C8A",
+    PassTeal="#6A9F6A",
+    FailRose="#C75B5B",
+    PlotCanvas="#1E1E1E",
     PVT_LINE_COLORS=(
-        "#E8A838",
-        "#3DB8C5",
-        "#C084FC",
-        "#F0A06A",
-        "#6B9BD1",
-        "#9BC47A",
+        "#4A90D9",  # AccentBlue
+        "#7A8B99",  # SteelGray
+        "#5A7A9A",  # SlateBlue
+        "#8A9AAA",  # MistSteel
+        "#3D6A9A",  # DeepSky
+        "#A0A8B0",  # SilverFog
     ),
 )
 
@@ -56,18 +59,19 @@ LIGHT = ThemeTokens(
     RuleLine="#C5CED8",
     Chalk="#1A2330",
     MuteFog="#5A6675",
-    TraceAmber="#B87A12",
-    PvtCyan="#1A8A96",
-    PassTeal="#2D7A5A",
-    FailRose="#B04050",
+    AccentBlue="#2E6BB0",  # deepened for WCAG on light paper
+    TraceAmber="#2E6BB0",
+    PvtCyan="#5A6B7A",
+    PassTeal="#3D7A3D",
+    FailRose="#B04040",
     PlotCanvas="#FFFFFF",
     PVT_LINE_COLORS=(
-        "#B87A12",
-        "#1A8A96",
-        "#7C3AED",
-        "#C46A2A",
-        "#3B6FA0",
-        "#5A8F3A",
+        "#2E6BB0",
+        "#5A6B7A",
+        "#3D5A7A",
+        "#6A7A8A",
+        "#1E4A7A",
+        "#7A8894",
     ),
 )
 
@@ -77,6 +81,7 @@ PanelSteel = DARK.PanelSteel
 RuleLine = DARK.RuleLine
 Chalk = DARK.Chalk
 MuteFog = DARK.MuteFog
+AccentBlue = DARK.AccentBlue
 TraceAmber = DARK.TraceAmber
 PvtCyan = DARK.PvtCyan
 PassTeal = DARK.PassTeal
@@ -91,6 +96,7 @@ def current_tokens() -> ThemeTokens:
 
 
 def _build_qss(t: ThemeTokens) -> str:
+    accent = t.AccentBlue
     return f"""
 QMainWindow, QWidget {{
     background-color: {t.InkWell};
@@ -147,19 +153,24 @@ QLabel#GateLights {{
     font-size: 12px;
     color: {t.MuteFog};
 }}
+QLabel#StatusMono {{
+    font-family: {DATA_FONT_FAMILY};
+    font-size: 12px;
+    color: {t.MuteFog};
+}}
 QLineEdit, QPlainTextEdit, QTextEdit, QComboBox, QSpinBox {{
     background-color: {t.InkWell};
     color: {t.Chalk};
     border: 1px solid {t.RuleLine};
     border-radius: 2px;
     padding: 5px 8px;
-    selection-background-color: {t.TraceAmber};
-    selection-color: {t.InkWell};
+    selection-background-color: {accent};
+    selection-color: #FFFFFF;
     font-family: {DATA_FONT_FAMILY};
     font-size: 12px;
 }}
 QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus, QSpinBox:focus {{
-    border: 1px solid {t.TraceAmber};
+    border: 1px solid {accent};
 }}
 QPlainTextEdit#YamlEditor {{
     font-family: {DATA_FONT_FAMILY};
@@ -176,8 +187,8 @@ QPlainTextEdit#AuditSnippet {{
 QComboBox QAbstractItemView {{
     background: {t.PanelSteel};
     color: {t.Chalk};
-    selection-background-color: {t.TraceAmber};
-    selection-color: {t.InkWell};
+    selection-background-color: {accent};
+    selection-color: #FFFFFF;
     border: 1px solid {t.RuleLine};
 }}
 QPushButton {{
@@ -188,22 +199,22 @@ QPushButton {{
     padding: 6px 12px;
     font-size: 13px;
 }}
-QPushButton:hover {{ border-color: {t.TraceAmber}; color: {t.TraceAmber}; }}
+QPushButton:hover {{ border-color: {accent}; color: {t.Chalk}; }}
 QPushButton:pressed {{ background-color: {t.RuleLine}; }}
 QPushButton:disabled {{ color: {t.MuteFog}; border-color: {t.RuleLine}; }}
 QPushButton#Primary {{
-    background-color: {t.TraceAmber};
-    color: {t.InkWell};
-    border: 1px solid {t.TraceAmber};
+    background-color: {accent};
+    color: #FFFFFF;
+    border: 1px solid {accent};
     font-weight: 500;
 }}
-QPushButton#Primary:hover {{ background-color: {t.TraceAmber}; color: {t.InkWell}; }}
+QPushButton#Primary:hover {{ background-color: {accent}; color: #FFFFFF; }}
 QPushButton#Danger {{
     border-color: {t.FailRose};
     color: {t.FailRose};
     background: transparent;
 }}
-QPushButton#Danger:hover {{ background: {t.FailRose}; color: {t.InkWell}; }}
+QPushButton#Danger:hover {{ background: {t.FailRose}; color: #FFFFFF; }}
 QTableWidget, QTableView {{
     background-color: {t.InkWell};
     alternate-background-color: {t.PanelSteel};
@@ -232,8 +243,8 @@ QCheckBox::indicator {{
     border-radius: 2px;
 }}
 QCheckBox::indicator:checked {{
-    background: {t.TraceAmber};
-    border-color: {t.TraceAmber};
+    background: {accent};
+    border-color: {accent};
 }}
 QListWidget {{
     background: {t.InkWell};
@@ -245,8 +256,8 @@ QListWidget {{
 }}
 QListWidget::item {{ padding: 3px 6px; }}
 QListWidget::item:selected {{
-    background: {t.TraceAmber};
-    color: {t.InkWell};
+    background: {accent};
+    color: #FFFFFF;
 }}
 QStatusBar {{
     background: {t.PanelSteel};
@@ -261,7 +272,7 @@ QProgressBar {{
     color: {t.Chalk};
     border-radius: 2px;
 }}
-QProgressBar::chunk {{ background: {t.TraceAmber}; }}
+QProgressBar::chunk {{ background: {accent}; }}
 QScrollBar:vertical {{
     background: {t.InkWell}; width: 9px; margin: 0;
 }}
@@ -285,10 +296,12 @@ QTabBar::tab {{
     color: {t.MuteFog};
     border: 1px solid {t.RuleLine};
     padding: 6px 12px;
+    border-radius: 2px;
 }}
 QTabBar::tab:selected {{
-    color: {t.TraceAmber};
-    border-bottom-color: {t.InkWell};
+    color: {t.Chalk};
+    border-bottom: 2px solid {accent};
+    border-bottom-color: {accent};
 }}
 QToolTip {{
     background-color: {t.PanelSteel};
@@ -302,13 +315,14 @@ QToolTip {{
 
 def _sync_aliases(t: ThemeTokens) -> None:
     global InkWell, PanelSteel, RuleLine, Chalk, MuteFog
-    global TraceAmber, PvtCyan, PassTeal, FailRose, PVT_LINE_COLORS, _CURRENT
+    global AccentBlue, TraceAmber, PvtCyan, PassTeal, FailRose, PVT_LINE_COLORS, _CURRENT
     _CURRENT = t
     InkWell = t.InkWell
     PanelSteel = t.PanelSteel
     RuleLine = t.RuleLine
     Chalk = t.Chalk
     MuteFog = t.MuteFog
+    AccentBlue = t.AccentBlue
     TraceAmber = t.TraceAmber
     PvtCyan = t.PvtCyan
     PassTeal = t.PassTeal
@@ -328,8 +342,8 @@ def apply_theme(app: QApplication, mode: str = "dark") -> ThemeTokens:
     pal.setColor(QPalette.ColorRole.Text, QColor(t.Chalk))
     pal.setColor(QPalette.ColorRole.Button, QColor(t.PanelSteel))
     pal.setColor(QPalette.ColorRole.ButtonText, QColor(t.Chalk))
-    pal.setColor(QPalette.ColorRole.Highlight, QColor(t.TraceAmber))
-    pal.setColor(QPalette.ColorRole.HighlightedText, QColor(t.InkWell))
+    pal.setColor(QPalette.ColorRole.Highlight, QColor(t.AccentBlue))
+    pal.setColor(QPalette.ColorRole.HighlightedText, QColor("#FFFFFF"))
     pal.setColor(QPalette.ColorRole.ToolTipBase, QColor(t.PanelSteel))
     pal.setColor(QPalette.ColorRole.ToolTipText, QColor(t.Chalk))
     app.setPalette(pal)
@@ -338,7 +352,7 @@ def apply_theme(app: QApplication, mode: str = "dark") -> ThemeTokens:
         from qfluentwidgets import Theme, setTheme, setThemeColor
 
         setTheme(Theme.LIGHT if t.name == "light" else Theme.DARK)
-        setThemeColor(t.TraceAmber)
+        setThemeColor(t.AccentBlue)
     except Exception:
         pass
     f = QFont()

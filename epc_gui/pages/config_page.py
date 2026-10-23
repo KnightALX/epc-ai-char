@@ -406,7 +406,7 @@ class ConfigPage(QWidget):
             self._append_log(tr("log.dry_fail", error=res.error))
             return
         self.lbl_dry.setText(tr("dry.pass"))
-        self.lbl_dry.setStyleSheet(f"color: {current_tokens().PassTeal};")
+        self.lbl_dry.setStyleSheet(f"color: {current_tokens().MuteFog};")
         self._append_log(
             tr(
                 "log.dry_pass",
@@ -455,22 +455,25 @@ class ConfigPage(QWidget):
         db_path = str(out.get("db_path", ""))
         audit_path = str(out.get("audit_report_path", ""))
         self.lbl_exit.setText(tr("exit.code", code=code))
+        # EXIT / 已落盘: neutral mono; true pass/fail only via lamps elsewhere
+        mono = (
+            f"color: {current_tokens().MuteFog}; "
+            "font-family: IBM Plex Mono, DejaVu Sans Mono, monospace;"
+        )
         if code == 0:
-            self.lbl_exit.setObjectName("Pass")
-            self.lbl_exit.setStyleSheet(f"color: {current_tokens().PassTeal};")
+            self.lbl_exit.setObjectName("StatusMono")
+            self.lbl_exit.setStyleSheet(mono)
             exists = Path(db_path).is_file() if db_path else False
             self.lbl_disk.setText(tr("disk.written") if exists else tr("disk.pass_no_db"))
-            self.lbl_disk.setStyleSheet(
-                f"color: {current_tokens().PassTeal};" if exists else f"color: {current_tokens().MuteFog};"
-            )
+            self.lbl_disk.setStyleSheet(mono)
             if exists:
                 self.request_preview.emit(db_path)
         else:
-            self.lbl_exit.setObjectName("Fail")
-            self.lbl_exit.setStyleSheet(f"color: {current_tokens().FailRose};")
+            self.lbl_exit.setObjectName("StatusMono")
+            self.lbl_exit.setStyleSheet(mono)
             exists = Path(db_path).is_file() if db_path else False
             self.lbl_disk.setText(tr("disk.fail_but_db") if exists else tr("disk.not_written"))
-            self.lbl_disk.setStyleSheet(f"color: {current_tokens().FailRose};")
+            self.lbl_disk.setStyleSheet(mono)
         hist_svc.append_history(
             {
                 "event": "run",

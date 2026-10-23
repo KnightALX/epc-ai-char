@@ -319,10 +319,9 @@ class ComparePage(QWidget):
         if exit_code is not None:
             self._exit_code = exit_code
             self.lbl_exit.setText(f"EXIT {exit_code}")
+            # EXIT mono + neutral (PASS/FAIL color only on lamps / overall)
             self.lbl_exit.setStyleSheet(
-                f"color: {current_tokens().PassTeal};"
-                if exit_code == 0
-                else f"color: {current_tokens().FailRose};"
+                f"color: {current_tokens().MuteFog}; font-family: IBM Plex Mono, DejaVu Sans Mono, monospace;"
             )
         if yaml_data is not None:
             self._yaml = yaml_data
@@ -348,8 +347,9 @@ class ComparePage(QWidget):
             key = "db.b_exists" if exists else "db.b_missing"
             self.lbl_db.setText(tr(key))
             self.lbl_db.setToolTip(self._b_db)
+            # 已落盘: neutral mono; true status stays on lamp + overall
             self.lbl_db.setStyleSheet(
-                f"color: {current_tokens().PassTeal if exists else current_tokens().FailRose};"
+                f"color: {current_tokens().MuteFog}; font-family: IBM Plex Mono, DejaVu Sans Mono, monospace;"
             )
         else:
             self.lbl_db.setText(tr("db.b_missing"))
@@ -519,9 +519,9 @@ class ComparePage(QWidget):
             self.plot_c1.addItem(
                 pg.BarGraphItem(x=[i - bw for i in x], height=base, width=bw, brush=t.MuteFog)
             )
-            self.plot_c1.addItem(pg.BarGraphItem(x=x, height=bvals, width=bw, brush=t.TraceAmber))
+            self.plot_c1.addItem(pg.BarGraphItem(x=x, height=bvals, width=bw, brush=t.AccentBlue))
             self.plot_c1.addItem(
-                pg.BarGraphItem(x=[i + bw for i in x], height=tgts, width=bw, brush=t.PvtCyan)
+                pg.BarGraphItem(x=[i + bw for i in x], height=tgts, width=bw, brush=t.RuleLine)
             )
             ax = self.plot_c1.getAxis("bottom")
             ax.setTicks([[(i, self._ordinal_tick(i)) for i in x]])
@@ -551,7 +551,7 @@ class ComparePage(QWidget):
             x = list(range(len(cells)))
             heights = [c.b_value if c.b_value is not None else 0 for c in cells]
             self.plot_c1.addItem(
-                pg.BarGraphItem(x=x, height=heights, width=0.6, brush=t.TraceAmber)
+                pg.BarGraphItem(x=x, height=heights, width=0.6, brush=t.AccentBlue)
             )
             for i, c in enumerate(cells):
                 if c.bound is None:
@@ -559,7 +559,7 @@ class ComparePage(QWidget):
                 self.plot_c1.plot(
                     [i - 0.4, i + 0.4],
                     [c.bound, c.bound],
-                    pen=pg.mkPen(color=t.FailRose, width=2),
+                    pen=pg.mkPen(color=t.MuteFog, width=1.5, style=Qt.DashLine),
                 )
             ax = self.plot_c1.getAxis("bottom")
             ax.setTicks([[(i, self._ordinal_tick(i)) for i in x]])
@@ -700,10 +700,10 @@ class ComparePage(QWidget):
             self.plot_c2.plot(
                 xs_b,
                 ys_b,
-                pen=pg.mkPen(color=t.TraceAmber, width=2),
+                pen=pg.mkPen(color=t.AccentBlue, width=2),
                 symbol="o",
                 symbolSize=6,
-                symbolBrush=t.TraceAmber,
+                symbolBrush=t.AccentBlue,
                 name=tr("legend.constructed"),
             )
         self.plot_c2.setTitle(f"{model.selected_key} · {model.selected_pvt}")

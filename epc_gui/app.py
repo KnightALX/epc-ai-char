@@ -137,7 +137,7 @@ class MainWindow(QMainWindow):
             """
         )
         self.brand.setStyleSheet(
-            f"color: {t.TraceAmber}; font-size: 18px; font-weight: 500; padding: 0 16px 8px 16px;"
+            f"color: {t.AccentBlue}; font-size: 18px; font-weight: 500; padding: 0 16px 8px 16px;"
         )
         self.sub.setStyleSheet(
             f"color: {t.MuteFog}; font-size: 11px; padding: 0 16px 14px 16px;"
@@ -247,8 +247,9 @@ class MainWindow(QMainWindow):
                     f"""
                     QPushButton#navBtn {{
                         text-align: left; padding: 10px 16px; border: none;
-                        border-left: 3px solid {t.TraceAmber}; background: {t.InkWell};
-                        color: {t.TraceAmber}; border-radius: 0;
+                        border-left: 3px solid {t.AccentBlue};
+                        background: rgba(74, 144, 217, 0.12);
+                        color: {t.Chalk}; border-radius: 0;
                     }}
                     """
                 )
@@ -260,7 +261,10 @@ class MainWindow(QMainWindow):
                         border-left: 3px solid transparent; background: transparent;
                         color: {t.Chalk}; border-radius: 0;
                     }}
-                    QPushButton#navBtn:hover {{ color: {t.TraceAmber}; }}
+                    QPushButton#navBtn:hover {{
+                        background: rgba(74, 144, 217, 0.08);
+                        color: {t.Chalk};
+                    }}
                     """
                 )
 

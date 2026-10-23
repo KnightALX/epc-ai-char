@@ -10,6 +10,8 @@ Fluent 本地壳：配置 job → 内嵌跑 `epc_engine` → 预览 `char_data` 
 
 视觉规范见 [`DESIGN.md`](DESIGN.md)（深/浅色板）；流程依据 [`FRONTEND_DESIGN.md`](FRONTEND_DESIGN.md)。
 
+**Aesthetic:** Virtuoso-like cool gray + blue（主流 EDA 冷静灰底 + AccentBlue 唯一强调；PASS/FAIL 色仅灯与真状态）。
+
 ## 安装
 
 依赖栈：**PyQt5≥5.15** + `PyQt-Fluent-Widgets`（PyQt5 版，`import qfluentwidgets`）+ pyqtgraph（建议 `PYQTGRAPH_QT_LIB=PyQt5`）。
