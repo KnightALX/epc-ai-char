@@ -28,6 +28,7 @@ from epc_gui.services import yaml_io
 from epc_gui.services.job_runner import JobRunner
 from epc_gui.services.sugar import dry_run_precheck, expand_from_path, expand_from_yaml_text
 from epc_gui.theme import current_tokens
+from epc_gui.paths import fixtures_root
 
 
 class ConfigPage(QWidget):
@@ -227,11 +228,11 @@ class ConfigPage(QWidget):
         def browse():
             if save:
                 p, _ = QFileDialog.getSaveFileName(
-                    self, tr("dialog.choose_path"), edit.text() or "/workspace/epc_fixtures"
+                    self, tr("dialog.choose_path"), edit.text() or str(fixtures_root())
                 )
             else:
                 p, _ = QFileDialog.getOpenFileName(
-                    self, tr("dialog.choose_file"), edit.text() or "/workspace/epc_fixtures"
+                    self, tr("dialog.choose_file"), edit.text() or str(fixtures_root())
                 )
             if p:
                 edit.setText(p)
@@ -290,7 +291,7 @@ class ConfigPage(QWidget):
 
     def open_yaml_dialog(self) -> None:
         p, _ = QFileDialog.getOpenFileName(
-            self, tr("dialog.open_yaml"), "/workspace/epc_fixtures", "YAML (*.yaml *.yml)"
+            self, tr("dialog.open_yaml"), str(fixtures_root()), "YAML (*.yaml *.yml)"
         )
         if p:
             self.load_yaml_path(p)
@@ -301,7 +302,7 @@ class ConfigPage(QWidget):
             p, _ = QFileDialog.getSaveFileName(
                 self,
                 tr("dialog.save_yaml"),
-                str(path or "/workspace/epc_fixtures/epc_job.gui.yaml"),
+                str(path or (fixtures_root() / "epc_job.gui.yaml")),
                 "YAML (*.yaml)",
             )
             if not p:
@@ -428,7 +429,7 @@ class ConfigPage(QWidget):
         if conflict:
             self._append_log(tr("log.reject", msg=conflict))
             return
-        path = self._yaml_path or Path("/workspace/epc_fixtures/_gui_last_job.yaml")
+        path = self._yaml_path or fixtures_root() / "_gui_last_job.yaml"
         yaml_io.save_yaml(path, data)
         self._yaml_path = path
         self._data = data

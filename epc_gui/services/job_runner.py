@@ -8,6 +8,8 @@ from pathlib import Path
 
 from PyQt5.QtCore import QObject, QProcess, pyqtSignal
 
+from epc_gui.paths import repo_root
+
 
 @dataclass
 class RunResult:
@@ -15,6 +17,36 @@ class RunResult:
     stdout: str
     stderr: str
     yaml_path: str
+
+
+def _ensure_repo_on_pythonpath(env_lines_or_dict, *, as_qprocess_list: bool) -> object:
+    root = str(repo_root())
+    if as_qprocess_list:
+        env = list(env_lines_or_dict)
+        extras = [root]
+        merged = False
+        out_env = []
+        for line in env:
+            if line.startswith("PYTHONPATH="):
+                val = line.split("=", 1)[1]
+                parts = [p for p in val.split(os.pathsep) if p]
+                for e in extras:
+                    if e not in parts:
+                        parts.insert(0, e)
+                out_env.append("PYTHONPATH=" + os.pathsep.join(parts))
+                merged = True
+            else:
+                out_env.append(line)
+        if not merged:
+            out_env.append("PYTHONPATH=" + os.pathsep.join(extras))
+        return out_env
+    env = dict(env_lines_or_dict)
+    pp = env.get("PYTHONPATH", "")
+    parts = [p for p in pp.split(os.pathsep) if p]
+    if root not in parts:
+        parts.insert(0, root)
+    env["PYTHONPATH"] = os.pathsep.join(parts)
+    return env
 
 
 class JobRunner(QObject):
@@ -40,26 +72,9 @@ class JobRunner(QObject):
         y = str(Path(yaml_path).resolve())
         self._yaml = y
         py = python or sys.executable
-        env = QProcess.systemEnvironment()
-        # Ensure /workspace on PYTHONPATH
-        extras = ["/workspace"]
-        merged = False
-        out_env = []
-        for line in env:
-            if line.startswith("PYTHONPATH="):
-                val = line.split("=", 1)[1]
-                parts = [p for p in val.split(os.pathsep) if p]
-                for e in extras:
-                    if e not in parts:
-                        parts.insert(0, e)
-                out_env.append("PYTHONPATH=" + os.pathsep.join(parts))
-                merged = True
-            else:
-                out_env.append(line)
-        if not merged:
-            out_env.append("PYTHONPATH=" + os.pathsep.join(extras))
+        out_env = _ensure_repo_on_pythonpath(QProcess.systemEnvironment(), as_qprocess_list=True)
         self._proc.setEnvironment(out_env)
-        self._proc.setWorkingDirectory("/workspace")
+        self._proc.setWorkingDirectory(str(repo_root()))
         self.started.emit()
         self._proc.start(py, ["-m", "epc_engine", y])
 
@@ -81,19 +96,14 @@ def run_blocking(yaml_path: str | Path, *, python: str | None = None, timeout: f
     import subprocess
 
     py = python or sys.executable
-    env = os.environ.copy()
-    pp = env.get("PYTHONPATH", "")
-    parts = [p for p in pp.split(os.pathsep) if p]
-    if "/workspace" not in parts:
-        parts.insert(0, "/workspace")
-    env["PYTHONPATH"] = os.pathsep.join(parts)
+    env = _ensure_repo_on_pythonpath(os.environ, as_qprocess_list=False)
     y = str(Path(yaml_path).resolve())
     p = subprocess.run(
         [py, "-m", "epc_engine", y],
         capture_output=True,
         text=True,
         env=env,
-        cwd="/workspace",
+        cwd=str(repo_root()),
         timeout=timeout,
     )
     return RunResult(p.returncode, p.stdout, p.stderr, y)

@@ -14,27 +14,35 @@ Fluent 本地壳：配置 job → 内嵌跑 `epc_engine` → 预览 `char_data` 
 
 依赖栈：**PyQt5≥5.15** + `PyQt-Fluent-Widgets`（PyQt5 版，`import qfluentwidgets`）+ pyqtgraph（建议 `PYQTGRAPH_QT_LIB=PyQt5`）。
 
+在**仓库根**（含 `epc_gui/`、`epc_engine/`、`epc_fixtures/`）执行：
 
 ```bash
-python3 -m venv /workspace/epc_gui/.venv
-source /workspace/epc_gui/.venv/bin/activate
-pip install -r /workspace/epc_gui/requirements.txt
+python3 -m venv epc_gui/.venv
+source epc_gui/.venv/bin/activate
+pip install -r epc_gui/requirements.txt
 # residual 路径需要 joblib + scikit-learn（已写入 requirements）
-# Qt 栈：PyQt5（非 PyQt6）。若环境同时装了 PyQt6，启动前设：
+# 若环境同时装了 PyQt6，启动前设：
 #   export PYQTGRAPH_QT_LIB=PyQt5
 ```
 
 ## 启动
 
 ```bash
-source /workspace/epc_gui/.venv/bin/activate
-export PYTHONPATH=/workspace
+cd /path/to/epc-ai-char   # 仓库根
+source epc_gui/.venv/bin/activate
+export PYTHONPATH=.
+export PYQTGRAPH_QT_LIB=PyQt5
+# 可选：夹具不在默认 <repo>/epc_fixtures 时
+# export EPC_FIXTURES_ROOT=/path/to/epc_fixtures
 python -m epc_gui
 # 无显示器：
-xvfb-run -a env PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
-  /workspace/epc_gui/.venv/bin/python -m epc_gui
+xvfb-run -a env PYTHONPATH=. PYQTGRAPH_QT_LIB=PyQt5 QT_QPA_PLATFORM=offscreen \
+  python -m epc_gui
 ```
 
+运行期路径（**不依赖 `/workspace`**）：
+- `state/`、`exports/` → 包相对（`epc_gui/state`、`epc_gui/exports`）
+- DEMO 夹具 → `EPC_FIXTURES_ROOT`，否则相对仓库根的 `epc_fixtures/`
 
 ## P2 对比页（v0.3）
 
@@ -44,7 +52,7 @@ xvfb-run -a env PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
 | 图一 | 有约束才绘；视图 rel_bars / bound_cells / constraint_list；无约束整区隐藏 |
 | 图二 | 参考 vs 构造；PVT/key 交集；容量×typical 双折线；右侧默认「覆盖 n/m」+「Δmed %」 |
 
-糖衣展开仍只走引擎 `load_job`。详见 `GUI_P2_验收自测.md` 与 `/workspace/EPC_GUI_P2_需求_v0.md`。
+糖衣展开仍只走引擎 `load_job`。详见 `GUI_P2_验收自测.md` 与仓库根 `EPC_GUI_P2_需求_v0.md`。
 
 ## P1 能力摘要
 
@@ -72,13 +80,15 @@ xvfb-run -a env PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
 
 ## 联调 YAML
 
+路径相对仓库根 `epc_fixtures/`（或 `EPC_FIXTURES_ROOT`）：
+
 | 场景 | 路径 |
 |---|---|
-| sample | `/workspace/epc_fixtures/epc_job.sample.yaml` |
-| P1 糖衣绿 | `/workspace/epc_fixtures/p1/epc_job.p1_improve_green.yaml` |
-| P1 糖衣拒载 | `/workspace/epc_fixtures/p1/epc_job.p1_r1_vague.yaml` |
-| P2 Geom 绿 | `/workspace/epc_fixtures/p2/job_corner_fill_green.yaml` |
-| residual H3-hard 红 | `/workspace/epc_fixtures/p2/job_corner_fill_residual_h3hard.yaml` |
+| sample | `epc_fixtures/epc_job.sample.yaml` |
+| P1 糖衣绿 | `epc_fixtures/p1/epc_job.p1_improve_green.yaml` |
+| P1 糖衣拒载 | `epc_fixtures/p1/epc_job.p1_r1_vague.yaml` |
+| P2 Geom 绿 | `epc_fixtures/p2/job_corner_fill_green.yaml` |
+| residual H3-hard 红 | `epc_fixtures/p2/job_corner_fill_residual_h3hard.yaml` |
 
 ## 截图
 
@@ -94,17 +104,16 @@ xvfb-run -a env PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
 
 ## Headless 自测
 
+在仓库根：
+
 ```bash
-source /workspace/epc_gui/.venv/bin/activate
-pip install -r /workspace/epc_gui/requirements.txt
-PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
-  python /workspace/epc_gui/scripts/smoke_p1.py
-PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
-  python /workspace/epc_gui/scripts/smoke_p2.py
-PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
-  python /workspace/epc_gui/scripts/smoke_headless.py
-xvfb-run -a env PYTHONPATH=/workspace QT_QPA_PLATFORM=offscreen \
-  python /workspace/epc_gui/scripts/capture_p1.py
+source epc_gui/.venv/bin/activate
+pip install -r epc_gui/requirements.txt
+export PYTHONPATH=.
+export PYQTGRAPH_QT_LIB=PyQt5
+QT_QPA_PLATFORM=offscreen python -m epc_gui.scripts.smoke_p1
+QT_QPA_PLATFORM=offscreen python -m epc_gui.scripts.smoke_p2
+QT_QPA_PLATFORM=offscreen python -m epc_gui.scripts.smoke_headless
 ```
 
 详见 `GUI_P2_验收自测.md` / `GUI_P1_验收自测.md` / `GUI_P0_验收报告.md`。

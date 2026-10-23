@@ -6,7 +6,9 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any
 
-STATE_DIR = Path("/workspace/epc_gui/state")
+from epc_gui.paths import PACKAGE_DIR
+
+STATE_DIR = PACKAGE_DIR / "state"
 HISTORY_PATH = STATE_DIR / "job_history.json"
 SETTINGS_PATH = STATE_DIR / "settings.json"
 _SHANGHAI = timezone(timedelta(hours=8))

@@ -6,7 +6,9 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Iterable
 
-EXPORT_DIR = Path("/workspace/epc_gui/exports")
+from epc_gui.paths import PACKAGE_DIR
+
+EXPORT_DIR = PACKAGE_DIR / "exports"
 _SHANGHAI = timezone(timedelta(hours=8))
 
 

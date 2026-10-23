@@ -6,6 +6,8 @@ from typing import Any
 
 import yaml
 
+from epc_gui.paths import fixtures_root
+
 MODES = (
     "epc_ab",
     "corner_fill_geom",
@@ -13,14 +15,42 @@ MODES = (
     "pvt_sparse_fill",
 )
 
-FIXTURE_SHORTCUTS = {
-    "sample": Path("/workspace/epc_fixtures/epc_job.sample.yaml"),
-    "p1_green": Path("/workspace/epc_fixtures/p1/epc_job.p1_improve_green.yaml"),
-    "p2_geom_green": Path("/workspace/epc_fixtures/p2/job_corner_fill_green.yaml"),
-    "p2_geom_residual_h3hard_red": Path(
-        "/workspace/epc_fixtures/p2/job_corner_fill_residual_h3hard.yaml"
-    ),
-}
+
+def _fixture_shortcuts() -> dict[str, Path]:
+    root = fixtures_root()
+    return {
+        "sample": root / "epc_job.sample.yaml",
+        "p1_green": root / "p1" / "epc_job.p1_improve_green.yaml",
+        "p2_geom_green": root / "p2" / "job_corner_fill_green.yaml",
+        "p2_geom_residual_h3hard_red": root / "p2" / "job_corner_fill_residual_h3hard.yaml",
+    }
+
+
+# Lazy-friendly alias used by callers that index FIXTURE_SHORTCUTS
+class _FixtureMap(dict):
+    def __getitem__(self, key):
+        return _fixture_shortcuts()[key]
+
+    def get(self, key, default=None):
+        return _fixture_shortcuts().get(key, default)
+
+    def items(self):
+        return _fixture_shortcuts().items()
+
+    def keys(self):
+        return _fixture_shortcuts().keys()
+
+    def values(self):
+        return _fixture_shortcuts().values()
+
+    def __contains__(self, key):
+        return key in _fixture_shortcuts()
+
+    def __iter__(self):
+        return iter(_fixture_shortcuts())
+
+
+FIXTURE_SHORTCUTS = _FixtureMap()
 
 
 def load_yaml(path: str | Path) -> dict[str, Any]:

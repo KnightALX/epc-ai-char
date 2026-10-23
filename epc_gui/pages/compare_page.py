@@ -31,10 +31,18 @@ from epc_gui.i18n import tr
 from epc_gui.services.audit_parse import AuditSummary, parse_audit, parse_constraint_sat_rate
 from epc_gui.services import compare_views as cv
 from epc_gui.theme import configure_plot, current_tokens
+from epc_gui.paths import fixtures_root, repo_root
 
-HOLDOUT_MD = Path("/workspace/epc_fixtures/algo_holdout_report.md")
-EVAL_H3 = Path("/workspace/epc_fixtures/p2/eval_h3.py")
-H3_REPORT = Path("/workspace/epc_fixtures/p2/h3_report.md")
+def _holdout_md() -> Path:
+    return fixtures_root() / "algo_holdout_report.md"
+
+
+def _eval_h3() -> Path:
+    return fixtures_root() / "p2" / "eval_h3.py"
+
+
+def _h3_report() -> Path:
+    return fixtures_root() / "p2" / "h3_report.md"
 
 
 class ComparePage(QWidget):
@@ -215,7 +223,7 @@ class ComparePage(QWidget):
         self.btn_eval_h3 = QPushButton("eval_h3")
         self.btn_holdout = QPushButton("hold-out")
         self.btn_eval_h3.clicked.connect(self.run_eval_h3)
-        self.btn_holdout.clicked.connect(lambda: self._open_md(HOLDOUT_MD))
+        self.btn_holdout.clicked.connect(lambda: self._open_md(_holdout_md()))
         self.eval_log = QPlainTextEdit()
         self.eval_log.setReadOnly(True)
         self.eval_log.setMaximumHeight(60)
@@ -350,7 +358,7 @@ class ComparePage(QWidget):
     # ---- gates ----
     def browse_audit(self) -> None:
         p, _ = QFileDialog.getOpenFileName(
-            self, tr("dialog.open_audit"), "/workspace/epc_fixtures", "Markdown (*.md)"
+            self, tr("dialog.open_audit"), str(fixtures_root()), "Markdown (*.md)"
         )
         if p:
             self.load_audit(p)
@@ -575,7 +583,7 @@ class ComparePage(QWidget):
     # ---- chart 2 ----
     def _pick_compare_db(self, which: str) -> None:
         p, _ = QFileDialog.getOpenFileName(
-            self, tr("dialog.open_db"), "/workspace/epc_fixtures", "SQLite (*.db)"
+            self, tr("dialog.open_db"), str(fixtures_root()), "SQLite (*.db)"
         )
         if not p:
             return
@@ -703,23 +711,24 @@ class ComparePage(QWidget):
     # ---- should aux ----
     def run_eval_h3(self) -> None:
         self.eval_log.clear()
-        if not EVAL_H3.is_file():
-            self.eval_log.setPlainText(f"missing {EVAL_H3}")
+        if not _eval_h3().is_file():
+            self.eval_log.setPlainText(f"missing {_eval_h3()}")
             return
         env = os.environ.copy()
+        root = str(repo_root())
         pp = env.get("PYTHONPATH", "")
         parts = [p for p in pp.split(os.pathsep) if p]
-        if "/workspace" not in parts:
-            parts.insert(0, "/workspace")
+        if root not in parts:
+            parts.insert(0, root)
         env["PYTHONPATH"] = os.pathsep.join(parts)
-        self.eval_log.appendPlainText(f"$ {sys.executable} {EVAL_H3}\n")
+        self.eval_log.appendPlainText(f"$ {sys.executable} {_eval_h3()}\n")
         try:
             p = subprocess.run(
-                [sys.executable, str(EVAL_H3)],
+                [sys.executable, str(_eval_h3())],
                 capture_output=True,
                 text=True,
                 env=env,
-                cwd="/workspace",
+                cwd=str(repo_root()),
                 timeout=600,
             )
         except Exception as e:

@@ -18,6 +18,7 @@ from PyQt5.QtWidgets import (
 
 from epc_gui.i18n import tr
 from epc_gui.services.db_reader import CharDb
+from epc_gui.paths import fixtures_root
 
 
 class PreviewPage(QWidget):
@@ -144,7 +145,7 @@ class PreviewPage(QWidget):
 
     def browse_db(self) -> None:
         p, _ = QFileDialog.getOpenFileName(
-            self, tr("dialog.open_db"), "/workspace/epc_fixtures", "SQLite (*.db)"
+            self, tr("dialog.open_db"), str(fixtures_root()), "SQLite (*.db)"
         )
         if p:
             self.open_db(p)
