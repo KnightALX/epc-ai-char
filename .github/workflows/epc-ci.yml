@@ -1,0 +1,41 @@
+name: epc-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  engine-and-gui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install pinned deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # GUI layer (headless smokes). PyQt5 stays a range pin: the dist runs
+          # 5.15.11 against the Qt 5.15.2 runtime under Python 3.13, and the
+          # old 5.15.2 exact pin would downgrade the binding without a 3.13
+          # wheel guarantee. qfluentwidgets is pinned in the GUI requirements.
+          pip install "PyQt5>=5.15"
+          pip install -r epc_gui/requirements.txt
+
+      - name: Engine pytest (red gate)
+        run: |
+          python -m pytest tests -q -m "not slow"
+          python -m pytest tests -q -m "slow"
+
+      - name: GUI headless smokes (red gate)
+        run: |
+          export QT_QPA_PLATFORM=offscreen
+          python epc_gui/scripts/brief_start_quit.py
+          python epc_gui/scripts/smoke_headless.py
+          python epc_gui/scripts/smoke_p1.py
+          python epc_gui/scripts/smoke_p2.py
+          python epc_gui/scripts/ui_regression.py

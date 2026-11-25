@@ -1,0 +1,14 @@
+# EPC GUI dependencies.
+# Theme = PyQt-Fluent-Widgets (qfluentwidgets): FluentWindow shell + Fluent
+# widgets on all pages (see epc_gui/theme.py and epc_gui/app.py). The pin is
+# exact — the Task 0 spike validated 1.11.3 offscreen on Windows, and the icon
+# set, SettingCard signatures and NavigationInterface registry are
+# version-sensitive. PyQt5 stays a range pin: the dist already runs 5.15.11
+# against the Qt 5.15.2 runtime under Python 3.13.
+
+PyQt5>=5.15
+PyQt-Fluent-Widgets==1.11.3
+pyqtgraph>=0.13
+PyYAML>=6.0
+joblib>=1.3
+scikit-learn>=1.3

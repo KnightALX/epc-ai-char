@@ -1,0 +1,57 @@
+version: '0.1'
+job_name: DEMO_A_to_DEMO_B_sample
+source:
+  process: DEMO_A
+  db_path: /workspace/epc_fixtures/A_ref.db
+target:
+  process: DEMO_B
+  instance_list_path: /workspace/epc_fixtures/B_instance_list.txt
+  pvt_list_path: /workspace/epc_fixtures/B_pvt_list.txt
+field_policy:
+  keys: all_from_source
+  table_axes:
+  - tran_index
+  - load_index
+style_from_source:
+  enabled: true
+  notes: Inherit DEMO_A synthetic trends; user constraints always win (§8).
+construct:
+  backend: residual_gbdt
+  residual_gbdt:
+    model_path: /workspace/epc_engine/models/residual_gbdt.joblib
+    prior: idw_nn
+    fallback: idw_nn
+    apply_on: all_extrapolated
+constraints:
+- type: table_upper_bound
+  instances:
+  - HINP3TCAM512X100SWISDC
+  pvts:
+  - SSGNP_0P99V_0P99V_125C
+  keys:
+  - tselr1_min_period
+  table_cells: all_cells
+  target:
+    mode: range
+    op: <=
+    value: 1500
+    unit: ps
+- type: relative_delta_vs_source
+  instances:
+  - HINP3TCAM64X8SWISDC
+  pvts:
+  - TT_0P80V_0P80V_25C
+  keys:
+  - tcq
+  table_cells: all_cells
+  target:
+    mode: delta_pct
+    delta_pct: -4
+    baseline: source_aligned
+output:
+  db_path: /workspace/epc_fixtures/B_out.sample.db
+  audit_report_path: /workspace/epc_fixtures/B_out.sample_audit.md
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job
+mode: epc_ab

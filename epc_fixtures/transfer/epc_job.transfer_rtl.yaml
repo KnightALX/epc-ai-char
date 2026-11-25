@@ -1,0 +1,31 @@
+version: "0.1"
+job_name: DEMO_transfer_ab_residual_tl_v0
+mode: transfer_ab
+source:
+  process: DEMO_SRC
+  db_path: /workspace/epc_fixtures/transfer/A_src.db
+target:
+  process: DEMO_TGT
+  seed_db: /workspace/epc_fixtures/transfer/A_tgt_seed.db
+  instance_list_path: /workspace/epc_fixtures/transfer/B_instance_list.txt
+  pvt_list_path: /workspace/epc_fixtures/transfer/B_pvt_list.txt
+field_policy:
+  keys: all_from_source
+  table_axes:
+  - tran_index
+  - load_index
+style_from_source:
+  enabled: true
+  notes: Transfer Residual TL; seed-fit DEMO.
+construct:
+  backend: residual_tl
+  residual_tl:
+    prior: linear_tr
+    fallback: linear_tr
+constraints: []
+output:
+  db_path: /workspace/epc_fixtures/transfer/B_tgt.rtl.db
+  audit_report_path: /workspace/epc_fixtures/transfer/B_tgt.rtl_audit.md
+gates:
+  require_constraint_satisfaction: false
+  on_violation: fail_job

@@ -1,0 +1,607 @@
+{
+  "seed_groups": [
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "FFGNP_0P80V_0P80V_125C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "FFGNP_0P99V_0P99V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_125C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_125C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_25C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "TT_0P80V_0P80V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM128X32SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM128X72SWISDC",
+      "pvt": "FFGNP_0P80V_0P80V_125C"
+    },
+    {
+      "instance": "HINP3TCAM128X72SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_25C"
+    },
+    {
+      "instance": "HINP3TCAM128X72SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_25C"
+    },
+    {
+      "instance": "HINP3TCAM128X72SWISDC",
+      "pvt": "TT_0P90V_0P90V_125C"
+    },
+    {
+      "instance": "HINP3TCAM128X72SWISDC",
+      "pvt": "TT_0P99V_0P99V_25C"
+    },
+    {
+      "instance": "HINP3TCAM128X8SWISDC",
+      "pvt": "FFGNP_0P99V_0P99V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM128X8SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM192X16SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_125C"
+    },
+    {
+      "instance": "HINP3TCAM192X16SWISDC",
+      "pvt": "TT_0P80V_0P80V_0C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "FFGNP_0P80V_0P80V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_125C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_125C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM192X64SWISDC",
+      "pvt": "TT_0P80V_0P80V_125C"
+    },
+    {
+      "instance": "HINP3TCAM256X100SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM256X100SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_0C"
+    },
+    {
+      "instance": "HINP3TCAM256X100SWISDC",
+      "pvt": "TT_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM256X100SWISDC",
+      "pvt": "TT_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "TT_0P80V_0P80V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM256X8SWISDC",
+      "pvt": "FFGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM256X8SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM256X8SWISDC",
+      "pvt": "TT_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM384X16SWISDC",
+      "pvt": "FFGNP_0P99V_0P99V_25C"
+    },
+    {
+      "instance": "HINP3TCAM384X16SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM384X16SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM384X16SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_85C"
+    },
+    {
+      "instance": "HINP3TCAM384X16SWISDC",
+      "pvt": "TT_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM384X48SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM384X48SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_85C"
+    },
+    {
+      "instance": "HINP3TCAM384X48SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_25C"
+    },
+    {
+      "instance": "HINP3TCAM384X48SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_85C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X32SWISDC",
+      "pvt": "FFGNP_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X32SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_0C"
+    },
+    {
+      "instance": "HINP3TCAM512X32SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X32SWISDC",
+      "pvt": "TT_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X32SWISDC",
+      "pvt": "TT_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X64SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X64SWISDC",
+      "pvt": "FFGNP_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X64SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X64SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X64SWISDC",
+      "pvt": "TT_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X64SWISDC",
+      "pvt": "TT_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "TT_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "TT_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "TT_0P80V_0P80V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X32SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X32SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X32SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X32SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X64SWISDC",
+      "pvt": "FFGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X64SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X64SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X64SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X64SWISDC",
+      "pvt": "TT_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X64SWISDC",
+      "pvt": "TT_0P90V_0P90V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X64SWISDC",
+      "pvt": "TT_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "FFGNP_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "FFGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "SSGNP_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "FFGNP_0P99V_0P99V_25C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "TT_0P675V_0P675V_25C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "TT_0P80V_0P80V_0C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "TT_0P80V_0P80V_125C"
+    },
+    {
+      "instance": "HINP3TCAM96X16SWISDC",
+      "pvt": "TT_0P99V_0P99V_25C"
+    },
+    {
+      "instance": "HINP3TCAM96X48SWISDC",
+      "pvt": "SSGNP_0P75V_0P75V_125C"
+    },
+    {
+      "instance": "HINP3TCAM96X48SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_M40C"
+    }
+  ],
+  "n": 120,
+  "forced_boundary": [
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM256X32SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X100SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM512X8SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X100SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "FFGNP_0P675V_0P675V_M40C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "FFGNP_1P05V_1P05V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "SSGNP_0P675V_0P675V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "SSGNP_0P99V_0P99V_125C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "TT_0P80V_0P80V_25C"
+    },
+    {
+      "instance": "HINP3TCAM64X8SWISDC",
+      "pvt": "TT_0P90V_0P90V_M40C"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# R1: vague sugar — missing instances/pvts → reject at load
+version: "0.1"
+job_name: "P1_R1_vague"
+
+source:
+  process: "DEMO_A"
+  db_path: "/workspace/epc_fixtures/A_ref.db"
+
+target:
+  process: "DEMO_B"
+  instance_list_path: "/workspace/epc_fixtures/B_instance_list.txt"
+  pvt_list_path: "/workspace/epc_fixtures/B_pvt_list.txt"
+
+field_policy:
+  keys: all_from_source
+  table_axes: ["tran_index", "load_index"]
+
+style_from_source:
+  enabled: true
+
+construct:
+  backend: idw_nn
+
+constraints:
+  - type: relative_improve_vs_source
+    # intentionally no instances / pvts / table_cells
+    speed_improve_pct: 4
+    power_improve_pct: 5
+
+output:
+  db_path: "/workspace/epc_fixtures/p1/B_out.p1_r1.db"
+  audit_report_path: "/workspace/epc_fixtures/p1/B_out.p1_r1_audit.md"
+
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job

@@ -1,0 +1,30 @@
+version: "0.1"
+mode: corner_fill_geom
+job_name: DEMO_P2_geom_red_mixed_option
+
+source:
+  process: DEMO_A
+  db_path: "/workspace/epc_fixtures/A_ref.db"
+
+geom_fill:
+  # Missing corner coverage: only 2 seeds (not 4 corners) + mixed option target
+  seed_instances:
+    - HINP3TCAM64X8SWISDC
+    - HINP3TCAM512X100SWISDC
+  target_instances:
+    - HINP3TCAM256X32OTHEROPT
+  require_corner_coverage: true
+
+field_policy:
+  keys: all_from_source
+
+construct:
+  backend: idw_nn
+
+output:
+  db_path: "/workspace/epc_fixtures/p2/out_geom_red.db"
+  audit_report_path: "/workspace/epc_fixtures/p2/out_geom_red_audit.md"
+
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job

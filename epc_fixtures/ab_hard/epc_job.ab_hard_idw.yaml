@@ -1,0 +1,42 @@
+# Same as green but backend=idw_nn
+version: "0.1"
+job_name: "AB_hard_idw_skip"
+
+source:
+  process: "DEMO_A"
+  db_path: "/workspace/epc_fixtures/A_ref.db"
+
+target:
+  process: "DEMO_B"
+  instance_list_path: "/workspace/epc_fixtures/B_instance_list.txt"
+  pvt_list_path: "/workspace/epc_fixtures/B_pvt_list.txt"
+
+field_policy:
+  keys: all_from_source
+  table_axes: ["tran_index", "load_index"]
+
+style_from_source:
+  enabled: true
+
+construct:
+  backend: idw_nn
+
+constraints:
+  - type: relative_improve_vs_source
+    instances: ["HINP3TCAM64X8SWISDC", "HINP3TCAM512X100SWISDC"]
+    pvts: ["TT_0P80V_0P80V_25C", "SSGNP_0P99V_0P99V_125C"]
+    table_cells: "all_cells"
+    speed_keys: ["tcq", "taccess"]
+    power_keys: ["leakage_vddc", "read_power_vddc"]
+    speed_improve_pct: 4
+    power_improve_pct: 5
+    baseline: source_aligned
+    allow_proxy_baseline: true
+
+output:
+  db_path: "/workspace/epc_fixtures/ab_hard/B_out.ab_hard_idw.db"
+  audit_report_path: "/workspace/epc_fixtures/ab_hard/B_out.ab_hard_idw_audit.md"
+
+gates:
+  require_constraint_satisfaction: true
+  on_violation: fail_job

@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+.DS_Store
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+epc_gui/exports/*
+!epc_gui/exports/.gitkeep
+*.log
+
+# Runtime state (per-machine history/theme/locale)
+epc_gui/state/*.json
+
+# Coverage artifacts
+.coverage
+htmlcov/
+coverage.xml
+
+# Generated scale-eval databases (rebuild with
+# epc_fixtures/scale/build_scale_fixture.py; results in scale/SCALE_EVAL.md)
+epc_fixtures/scale/A_scale.db
+epc_fixtures/scale/A_scale_20x.db
+epc_fixtures/scale/B_out_scale_10x.db
+epc_fixtures/scale/B_out_scale_20x.db
+
+# Atomic-write temp files
+*.db.tmp

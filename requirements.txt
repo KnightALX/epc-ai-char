@@ -1,0 +1,24 @@
+# EPC AI Characterization — runtime/test dependencies
+#
+# Verified pins: Windows, Python 3.13.8 (2026-11-24, D:\SramDbEpc run).
+# GUI deps (PyQt5 / PyQt-Fluent-Widgets / pyqtgraph) remain in
+# epc_gui/requirements.txt and are optional for engine-only use.
+#
+# Reproducibility note (gate 3 evidence):
+#   epc_engine/models/residual_gbdt.joblib was trained with scikit-learn 1.9.1
+#   (stamp generated 2026-10-22). Runtime 1.6.1 loads it and predicts
+#   correctly (G2 rel_err=1.1e-16) but emits sklearn's
+#   InconsistentVersionWarning. For byte-level model reproduction, train in a
+#   1.9.1 environment; for runtime use, either pin is acceptable — the warning
+#   does not affect numeric output in the verified test matrix.
+
+joblib==1.5.3
+numpy==2.2.3
+pandas==2.2.3
+PyYAML==6.0.3
+scikit-learn==1.6.1
+
+# --- dev / test ---
+pytest==9.0.2
+pytest-cov>=6.0
+psutil==7.2.0
